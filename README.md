@@ -1,6 +1,9 @@
 # Websocket tests
 Fire as many websockets requests as possible
 
+## Setup
+Create a .env file (or copy from .example.env) and replace the value for `MAINNET_RPC` and `MAINNET_WS` accordingly.
+
 ## Tests
 Automatically run test cases which will measure how much time is taken.
 ```
