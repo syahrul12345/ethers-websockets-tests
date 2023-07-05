@@ -10,6 +10,13 @@ To run, you have to choose how many times to loop, and how many requests is done
 //Do with 5 iterations, each with 50 websocket requests
 cargo run -- --outer 5 --iterations 50
 ```
+
+or to use an optimized build:
+```
+make build
+./target/release/async-eth --outer 5 --iterations 50
+```
+
 ## 
 Tests
 Automatically run test cases which will measure how much time is taken for each test case
