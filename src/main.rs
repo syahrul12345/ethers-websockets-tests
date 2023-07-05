@@ -49,7 +49,6 @@ async fn start_benchmark(args: Cli) {
     let ws_provider = get_ws_provider().await;
     let tokens = get_tokens().await.unwrap();
     let mut futures = (0..args.outer)
-        .into_iter()
         .map(|i| {
             tokio::spawn(batch_calls(
                 i,
@@ -71,7 +70,6 @@ async fn batch_calls(
 ) {
     let t = Instant::now();
     let mut futures = (0..iterations)
-        .into_iter()
         .map(|i| {
             let ws_provider = ws_provider.clone();
             let token_index = i % tokens.len() as i128;
@@ -86,7 +84,7 @@ async fn batch_calls(
             ))
         })
         .collect::<FuturesUnordered<_>>();
-    while let Some(val) = futures.next().await {}
+    while let Some(_val) = futures.next().await {}
     println!("------ BENCHMARK  ------");
     println!("Iteration index: {}", index);
     println!("Requests done this iteration : {}", iterations);
@@ -116,7 +114,7 @@ async fn make_eth_call_with_state_override(
         .account(token_checker_address)
         .code(Bytes::from_str(token_checker_deployed_bytecode).unwrap())
         .balance(initial_eth_balance);
-    let res = ws_provider.call_raw(&transaction.tx).state(&state).await?;
+    let _res = ws_provider.call_raw(&transaction.tx).state(&state).await?;
     Ok(())
 }
 
